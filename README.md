@@ -9,6 +9,8 @@ Features:
 * Constant-time (best-effort), suitable for encoding/decoding secrets
 * Characters can be ignored by the decoder
 
+Available on NPM: [base64-ct](https://www.npmjs.com/package/base64-ct)
+
 Usage:
 
 - Traditional alphabet, padding:
