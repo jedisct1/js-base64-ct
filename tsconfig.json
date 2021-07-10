@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "strict": true,
+    "allowJs": false,
+    "pretty": true,
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "skipLibCheck": false,
+    "rootDir": "src",
+    "declaration": true,
+    "baseUrl": ".",
+    "target": "es2015",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": false,
+    "allowUnreachableCode": false,
+  },
+  "compileOnSave": true,
+  "include": [
+    "src"
+  ]
+}

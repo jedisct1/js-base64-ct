@@ -1,0 +1,30 @@
+{
+  "name": "base64-ct",
+  "version": "1.0.0",
+  "description": "Safe, constant-time Base64 encoding and decoding in pure JavaScript, with support for common Base64 variants.",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "typings": "dist/main.d.ts",
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jedisct1/js-base64-ct"
+  },
+  "keywords": [
+    "typescript",
+    "library",
+    "base64",
+    "cryptography"
+  ],
+  "author": "Frank Denis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jedisct1/js-base64-ct/issues"
+  },
+  "homepage": "https://github.com/jedisct1/js-base64-ct",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
