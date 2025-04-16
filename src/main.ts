@@ -1,8 +1,11 @@
-function eq(x: number, y: number) { return (((0 - (x ^ y)) >> 16) & 0xffff) ^ 0xffff; }
-function gt(x: number, y: number) { return ((y - x) >> 8) & 0xffff; }
-function lt(x: number, y: number) { return gt(y, x); }
-function ge(x: number, y: number) { return gt(y, x) ^ 0xffff; }
-function le(x: number, y: number) { return ge(y, x); }
+function eq(x: number, y: number): number {return (((0 - (x ^ y)) >> 16) & 0xffff) ^ 0xffff;}
+function gt(x: number, y: number): number {return ((y - x) >> 8) & 0xffff;}
+function lt(x: number, y: number): number {return gt(y, x);}
+function ge(x: number, y: number): number {return gt(y, x) ^ 0xffff;}
+function le(x: number, y: number): number {return ge(y, x);}
+
+type ByteToCharFn = (x: number) => string;
+type CharToByteFn = (c: number) => number;
 
 function byteToCharOriginal(x: number): string {
     const c = (lt(x, 26) & (x + 'A'.charCodeAt(0))) |
@@ -37,7 +40,7 @@ function charToByteUrlSafe(c: number): number {
     return x | (eq(x, 0) & (eq(c, 'A'.charCodeAt(0)) ^ 0xffff));
 }
 
-function bin2Base64(bin: Uint8Array, padding: boolean, byteToChar: Function): string {
+function bin2Base64(bin: Uint8Array, padding: boolean, byteToChar: ByteToCharFn): string {
     let bin_len = bin.length;
     let nibbles = Math.floor(bin_len / 3);
     let remainder = bin_len - 3 * nibbles;
@@ -83,7 +86,7 @@ function skipPadding(b64: string, ignore: string | null, padding_len: number): v
     }
 }
 
-function base642Bin(b64: string, padding: boolean, ignore: string | null, charToByte: Function): Uint8Array {
+function base642Bin(b64: string, padding: boolean, ignore: string | null, charToByte: CharToByteFn): Uint8Array {
     let b64_len = b64.length;
     let bin = new Uint8Array(Math.ceil(b64_len * 3 / 4));
     let acc = 0, acc_len = 0, bin_len = 0, b64_pos = 0;
@@ -120,8 +123,8 @@ function base642Bin(b64: string, padding: boolean, ignore: string | null, charTo
 export class Base64Codec {
     private _ignore: string | null = null;
     private _padding: boolean = false;
-    private _charToByte: Function;
-    private _byteToChar: Function;
+    private _charToByte: CharToByteFn;
+    private _byteToChar: ByteToCharFn;
 
     /**
      * Custom Base64 encoding/decoding.
@@ -131,7 +134,7 @@ export class Base64Codec {
      * @param charToByte - function to convert Base64 char to a byte.
      * @param byteToChar - function to convert byte to a Base64 char.
      */
-    constructor(padding: boolean = false, ignore: string | null = null, charToByte: Function, byteToChar: Function) {
+    constructor(padding: boolean = false, ignore: string | null = null, charToByte: CharToByteFn, byteToChar: ByteToCharFn) {
         this._padding = padding;
         this._ignore = ignore;
         this._charToByte = charToByte;

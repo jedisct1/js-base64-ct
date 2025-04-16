@@ -7,17 +7,18 @@
     "resolveJsonModule": true,
     "sourceMap": false,
     "skipLibCheck": false,
-    "rootDir": "src",
+    "rootDir": ".",
     "declaration": true,
     "baseUrl": ".",
     "target": "es2015",
     "module": "commonjs",
     "noImplicitAny": true,
     "removeComments": false,
-    "allowUnreachableCode": false,
+    "allowUnreachableCode": false
   },
   "compileOnSave": true,
   "include": [
-    "src"
+    "src/**/*",
+    "test/**/*"
   ]
 }
