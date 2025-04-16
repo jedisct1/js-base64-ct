@@ -1,6 +1,6 @@
 {
   "name": "base64-ct",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Safe, constant-time Base64 encoding and decoding in pure JavaScript, with support for common Base64 variants.",
   "type": "module",
   "main": "dist/main.js",
